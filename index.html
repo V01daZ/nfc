@@ -1,11 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Аудио</title>
+<style>
+  /* Убираем стандартные отступы браузера */
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+
+  /* Стили для кнопки на весь экран */
+  #play-overlay {
+    position: fixed;     /* Фиксируем поверх всего сайта */
+    top: 0;
+    left: 0;
+    width: 100vw;        /* Ширина на весь экран */
+    height: 100vh;       /* Высота на весь экран */
+    background-color: #2c3e50; /* Цвет фона */
+    color: white;        /* Цвет текста */
+    font-size: 24px;     /* Размер текста */
+    font-family: Arial, sans-serif;
+    border: none;        /* Убираем рамки */
+    cursor: pointer;     /* Курсор в виде пальца */
+    z-index: 9999;       /* Помещаем поверх всех остальных элементов */
+    
+    /* Центрируем текст внутри кнопки */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+  }
+
+  /* Эффект при наведении */
+  #play-overlay:hover {
+    background-color: #34495e;
+  }
+</style>
+</head>
 <body>
+
+<!-- Наша кнопка на весь экран -->
+<button id="play-overlay">Нажмите в любом месте, чтобы включить звук</button>
+
+<!-- Здесь может быть остальной контент вашего сайта -->
+<h1 style="text-align: center; margin-top: 50px;">Добро пожаловать на сайт!</h1>
+
 <script>
-  document.addEventListener('click', function() {
-    new Audio('sound.mp3').play();
+  const playButton = document.getElementById('play-overlay');
+  
+  playButton.addEventListener('click', function() {
+    // Создаем и запускаем аудио
+    const audio = new Audio('sound.mp3');
+    audio.play();
+    
+    // Скрываем кнопку после нажатия, чтобы она не мешала смотреть сайт
+    playButton.style.display = 'none';
   });
-  document.body.click(); // триггерим сразу
 </script>
+
 </body>
 </html>
